@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background:
+      linear-gradient(135deg, rgba(14, 165, 233, 0.08), transparent 32%),
+      linear-gradient(315deg, rgba(16, 185, 129, 0.08), transparent 30%),
+      #f8fafc;
+  }
+
+  ::selection {
+    @apply bg-cyan-200 text-slate-950;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white/90 rounded-xl border border-white shadow-sm backdrop-blur
+           transition-all duration-300 ease-out;
+    box-shadow: 0 16px 45px rgba(15, 23, 42, 0.07), 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 60px rgba(15, 23, 42, 0.11), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-white font-semibold rounded-lg
+           bg-gradient-to-r from-cyan-600 via-blue-600 to-emerald-600
+           hover:shadow-lg hover:shadow-cyan-500/25 active:scale-[0.98]
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-white/90 text-slate-700 font-medium rounded-lg
+           border border-slate-200 hover:border-cyan-200 hover:bg-cyan-50/70 active:scale-[0.98]
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white font-medium rounded-lg
+           hover:bg-red-700 hover:shadow-lg hover:shadow-red-500/20 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-success {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white font-semibold rounded-lg
+           hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-500/25 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .input-field {
+    @apply w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg bg-white/95
+           focus:outline-none focus:ring-4 focus:ring-cyan-500/15 focus:border-cyan-500
+           placeholder:text-slate-400 transition-all duration-200;
+  }
+  .input-error {
+    @apply border-red-400 focus:ring-red-400 focus:border-red-400;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+  .error-text {
+    @apply text-xs text-red-600 mt-1;
+  }
+  .badge-pending {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 rounded-full shadow-sm;
+  }
+  .badge-paid {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full shadow-sm;
+  }
+  .badge-active {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-semibold bg-cyan-50 text-cyan-700 border border-cyan-200 rounded-full shadow-sm;
+  }
+  .badge-inactive {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200 rounded-full shadow-sm;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer;
+  }
+  .sidebar-link-active {
+    @apply bg-white text-slate-950 shadow-lg shadow-cyan-950/20;
+  }
+  .sidebar-link-inactive {
+    @apply text-slate-300 hover:bg-white/10 hover:text-white hover:translate-x-1;
+  }
+  .stat-card {
+    @apply card p-5 flex flex-col gap-1 relative overflow-hidden;
+  }
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-400 via-emerald-400 to-amber-300;
+  }
+  .table-header {
+    @apply whitespace-nowrap text-xs font-semibold text-slate-500 uppercase tracking-wider px-4 py-3 text-left bg-slate-50/80;
+  }
+  .table-cell {
+    @apply whitespace-nowrap px-4 py-3 text-sm text-slate-700 border-t border-slate-100;
+  }
+  .alert-success {
+    @apply flex items-start gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800 text-sm;
+  }
+  .alert-error {
+    @apply flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm;
+  }
+  .alert-warning {
+    @apply flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm;
+  }
+  .alert-info {
+    @apply flex items-start gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-sm;
+  }
+
+  .page-shell {
+    @apply animate-page-in;
+  }
+
+  .energy-panel {
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78)),
+      linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(16, 185, 129, 0.12), rgba(245, 158, 11, 0.12));
+  }
+}
+
+@layer utilities {
+  .animate-page-in {
+    animation: pageIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-rise-in {
+    animation: riseIn 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 2.4s ease-in-out infinite;
+  }
+
+  .energy-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+  }
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+@media (max-width: 640px) {
+  .card:hover {
+    transform: none;
+  }
+
+  .table-header {
+    @apply px-3 py-2 text-[11px];
+  }
+
+  .table-cell {
+    @apply px-3 py-2.5 text-xs;
+  }
+}
